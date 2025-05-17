@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block title %}Página Não Encontrada - Meu amigo Mecânico{% endblock %}
+
+{% block content %}
+<div class="main-container error-page-container">
+    <h1 class="error-code">Oops! 404</h1>
+    <p class="error-message">A página que você está procurando não foi encontrada.</p>
+    <p>Parece que pegamos um caminho errado na oficina!</p>
+    <p><a href="{{ url_for('pagina_menu_principal') }}" class="button-link">Voltar para o Menu Principal</a></p>
+</div>
+{% endblock %}

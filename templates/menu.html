@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block title %}Bem-vindo ao Meu amigo Mecânico{% endblock %}
+
+{% block content %}
+{# A classe hero-section-intro não terá fundo próprio, usando o gradiente do body #}
+<div class="hero-section-intro" id="heroIntro">
+    <h1 id="introTitulo">Meu amigo Mecânico</h1>
+    <p id="introSubtitulo" class="subtitle">A IA que facilita a sua ida ao mecânico!</p>
+    <div class="vamos-la-container" id="vamosLaContainer">
+        <button id="vamosLaBtn" class="button-link">Vamos lá!</button>
+    </div>
+</div>
+
+{# Este container é para os botões dos caminhos. Ele também não terá fundo,
+   as caixas .caminho-botao terão seu próprio fundo branco perolizado. #}
+<div class="menu-options-container">
+    <div class="caminhos" id="opcoesCaminhos"> {# CSS já esconde com opacity: 0 e max-height: 0 #}
+        <a href="{{ url_for('pagina_revisoes') }}" class="caminho-botao">
+            <h3>Revisões Padrões</h3>
+            <p>Informações detalhadas sobre as manutenções mais comuns do seu veículo.</p>
+        </a>
+        <a href="{{ url_for('pagina_diagnostico') }}" class="caminho-botao">
+            <h3>Diagnóstico por Sintomas</h3>
+            <p>Descreva um sintoma e receba possíveis causas e orientações.</p>
+        </a>
+        <a href="{{ url_for('pagina_orcamentos') }}" class="caminho-botao">
+            <h3>Entendendo seu Orçamento</h3>
+            <p>Ajuda para decifrar o que o mecânico disse e os serviços propostos.</p>
+        </a>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts_extra %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const vamosLaBtn = document.getElementById('vamosLaBtn');
+        const opcoesCaminhos = document.getElementById('opcoesCaminhos');
+        const heroIntro = document.getElementById('heroIntro');
+        const vamosLaContainer = document.getElementById('vamosLaContainer');
+
+        function mostrarOpcoes() {
+            if (heroIntro) heroIntro.classList.add('compact');
+            if (vamosLaContainer) {
+                vamosLaContainer.classList.add('hidden');
+                setTimeout(() => {
+                    if(vamosLaContainer) vamosLaContainer.style.display = 'none';
+                }, 500); 
+            }
+            if (opcoesCaminhos) opcoesCaminhos.classList.add('visivel');
+        }
+
+        if (vamosLaBtn) {
+            vamosLaBtn.addEventListener('click', mostrarOpcoes);
+        }
+    });
+</script>
+{% endblock %}

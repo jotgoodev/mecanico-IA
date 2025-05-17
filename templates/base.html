@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Meu amigo Mecânico{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    {% block head_extra %}{% endblock %}
+</head>
+<body>
+    <header class="main-header">
+        <div class="logo">
+            <a href="{{ url_for('pagina_menu_principal') }}">
+                {# <img src="{{ url_for('static', filename='images/logo_robo.png') }}" alt="Logo Meu amigo Mecânico" style="height: 50px; vertical-align: middle;"> #}
+                <span {# style="margin-left: 10px; font-size: 1.1em; vertical-align: middle;" #}>Meu amigo Mecânico</span>
+            </a>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('pagina_menu_principal') }}" class="{{ 'active' if request.endpoint == 'pagina_menu_principal' else '' }}">Início</a></li>
+                <li><a href="{{ url_for('pagina_revisoes') }}" class="{{ 'active' if request.endpoint == 'pagina_revisoes' or request.endpoint == 'detalhe_revisao' else '' }}">Revisões</a></li>
+                <li><a href="{{ url_for('pagina_diagnostico') }}" class="{{ 'active' if request.endpoint == 'pagina_diagnostico' else '' }}">Diagnóstico</a></li>
+                <li><a href="{{ url_for('pagina_orcamentos') }}" class="{{ 'active' if request.endpoint == 'pagina_orcamentos' else '' }}">Orçamentos</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="content-wrapper">
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <footer class="main-footer">
+        <p>&copy; {{ current_year }} Meu amigo Mecânico. Projeto da Imersão IA Alura + Google.</p>
+    </footer>
+
+    {# Bloco para scripts JavaScript no final do body, se necessário #}
+    {% block scripts_extra %}
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const contentWrapper = document.querySelector('.content-wrapper');
+            
+            // A animação de fade-in inicial é controlada pelo CSS em .content-wrapper
+
+            // Lógica para o fade-out ao clicar em links internos
+            const internalLinks = document.querySelectorAll(
+                'header nav a, .caminho-botao, .lista-revisoes a, .voltar-link, .logo a'
+            );
+
+            internalLinks.forEach(link => {
+                // Excluir links que abrem em nova aba ou que são para ficheiros estáticos
+                if (link.target === '_blank' || 
+                    (link.href && (link.href.includes('/static/') || link.href.endsWith('.pdf') || link.href.endsWith('.jpg')))
+                ) {
+                    return;
+                }
+
+                link.addEventListener('click', function(event) {
+                    const href = this.href;
+                    // Só aplicar fade-out se for um link de navegação e não um "âncora" na mesma página
+                    // ou um link JavaScript vazio
+                    if (href && href !== '#' && !href.startsWith('javascript:void(0)') && !href.startsWith(window.location.href + '#')) {
+                        // Não previne o default se for o link da página atual (para permitir refresh com animação)
+                        if (href !== window.location.href && !(href + '/' === window.location.href || href === window.location.href + '/')) {
+                             event.preventDefault(); // Previne a navegação imediata
+                        }
+                       
+                        if (contentWrapper) {
+                            contentWrapper.classList.add('fade-out');
+                        }
+                        
+                        setTimeout(function() {
+                            window.location.href = href;
+                        }, 300); // Tempo da transição de fade-out (0.3s no CSS)
+                    }
+                });
+            });
+
+            // Lógica para o botão "Vamos lá" no menu.html (se estiver na página de menu)
+            const vamosLaBtn = document.getElementById('vamosLaBtn');
+            const opcoesCaminhos = document.getElementById('opcoesCaminhos');
+            const heroIntro = document.getElementById('heroIntro');
+            const vamosLaContainer = document.getElementById('vamosLaContainer');
+
+            function mostrarOpcoes() {
+                if (heroIntro) heroIntro.classList.add('compact');
+                if (vamosLaContainer) {
+                    vamosLaContainer.classList.add('hidden');
+                    // Garante que o botão não ocupe espaço após a animação
+                    setTimeout(() => {
+                        if(vamosLaContainer) vamosLaContainer.style.display = 'none';
+                    }, 500); // Deve corresponder ao tempo da transição de opacidade/transform do CSS
+                }
+                if (opcoesCaminhos) opcoesCaminhos.classList.add('visivel');
+            }
+
+            // Sempre mostra o intro completo ao carregar a página de menu
+            // O estado inicial é definido pelo CSS
+            if (vamosLaBtn && opcoesCaminhos && heroIntro && vamosLaContainer) {
+                vamosLaBtn.addEventListener('click', mostrarOpcoes);
+            }
+        });
+    </script>
+    {% endblock %}
+</body>
+</html>

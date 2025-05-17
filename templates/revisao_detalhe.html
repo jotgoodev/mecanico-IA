@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block title %}{{ titulo_item }} - Meu amigo Mecânico{% endblock %}
+
+{% block content %}
+<div class="main-container">
+    <h2>{{ titulo_item }}</h2>
+    
+    <div class="conteudo-revisao">
+        {{ detalhes_html | safe }}
+    </div>
+
+    <div class="voltar-link-container">
+        <a href="{{ url_for('pagina_revisoes') }}" class="voltar-link">Voltar à Lista de Revisões</a>
+        <a href="{{ url_for('pagina_menu_principal') }}" class="voltar-link">Voltar ao Menu Principal</a>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,503 @@
+/* static/style.css */
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Roboto:wght@400;500;700&family=Open+Sans:wght@400;600;700&display=swap');
+
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 400; 
+    background: linear-gradient(135deg, #1c1e30 0%, #3c224f 100%); 
+    color: #f0f2f5; 
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    overflow-x: hidden; 
+}
+
+/* Cabeçalho Principal (Navbar) */
+.main-header {
+    background-color: rgba(22, 22, 38, 0.75); 
+    backdrop-filter: blur(8px); 
+    color: white;
+    padding: 15px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    position: sticky;
+    top: 0;
+    z-index: 1000; /* O cabeçalho tem um z-index alto */
+}
+
+.main-header .logo a {
+    color: white;
+    text-decoration: none;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.7em; 
+    font-weight: 700; 
+    display: flex;
+    align-items: center;
+}
+.main-header .logo a span { 
+    margin-left: 10px; 
+    font-size: 1em; 
+    vertical-align: middle;
+}
+
+.main-header nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+.main-header nav ul li {
+    margin-left: 25px; 
+}
+.main-header nav ul li a {
+    color: #e0e0e0;
+    text-decoration: none;
+    font-family: 'Roboto', sans-serif; 
+    font-weight: 500; 
+    padding: 8px 12px;
+    border-radius: 4px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+.main-header nav ul li a:hover,
+.main-header nav ul li a.active {
+    background-color: #8E2DE2; 
+    color: white;
+}
+
+/* Wrapper para o conteúdo principal */
+.content-wrapper {
+    flex-grow: 1;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 0; 
+    opacity: 0; 
+    animation: fadeInPage 0.6s ease-out forwards;
+}
+.content-wrapper.fade-out {
+    opacity: 0;
+    transition: opacity 0.3s ease-in;
+}
+@keyframes fadeInPage {
+    from { opacity: 0; transform: translateY(15px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Container Principal para o Conteúdo das Páginas Internas */
+.main-container {
+    width: 100%;
+    max-width: 900px; 
+    margin: 30px 20px; 
+    padding: 35px; 
+    background-color: rgba(230, 235, 250, 0.97); 
+    color: #212529; 
+    border-radius: 12px;
+    border: 1px solid rgba(142, 45, 226, 0.15); 
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15); 
+    box-sizing: border-box;
+}
+.main-container h2 { 
+    font-family: 'Roboto', sans-serif; 
+    font-weight: 700; 
+    color: #4A00E0; 
+    margin-top: 0;
+    margin-bottom: 30px; 
+    font-size: 2.2em; 
+    text-align: center; 
+    border-bottom: 1px solid rgba(74, 0, 224, 0.2); 
+    padding-bottom: 15px;
+}
+
+.main-container p, .main-container .texto-instrucao {
+    font-family: 'Open Sans', sans-serif; 
+    font-size: 1.1em; 
+    line-height: 1.7;
+    margin-bottom: 25px; 
+    color: #212529 !important; 
+    text-align: center; 
+}
+
+.main-container label { 
+    display:block; 
+    margin-bottom:10px; 
+    font-family: 'Open Sans', sans-serif;
+    font-weight:600; 
+    font-size: 1.05em; 
+    color: #212529 !important; 
+    text-align: left; 
+}
+
+textarea {
+    width: calc(100% - 26px); 
+    min-height: 140px; 
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 1px solid #8E2DE2; 
+    border-radius: 8px;
+    font-size: 1em;
+    line-height: 1.6;
+    font-family: 'Open Sans', sans-serif;
+    background-color: #ffffff; 
+    color: #333; 
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
+}
+textarea::placeholder {
+    color: #6c757d;
+}
+
+input[type="submit"], .button-link { 
+    display: inline-block; 
+    margin: 15px 5px; 
+    background: linear-gradient(135deg, #8E2DE2, #6c63ff); 
+    color: white;
+    padding: 15px 35px; 
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.1em; 
+    font-family: 'Roboto', sans-serif; 
+    font-weight: 700; 
+    text-align: center;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(142, 45, 226, 0.4); 
+}
+input[type="submit"]:hover, .button-link:hover {
+    background: linear-gradient(135deg, #7d26c9, #5649ff); 
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 8px 20px rgba(142, 45, 226, 0.5);
+}
+
+/* Estilos para a Resposta da IA */
+.response-container {
+    margin-top: 40px;
+    padding: 25px;
+    background-color: #f8f9fa; 
+    border: 1px solid #ced4da; 
+    border-radius: 8px;
+    text-align: left; 
+}
+.response-container h3 { 
+    margin-top: 0;
+    color: #4A00E0; 
+    font-family: 'Roboto', sans-serif; 
+    font-weight: 700;
+    font-size: 1.5em; 
+    margin-bottom: 20px;
+}
+.ai-response-content { 
+    white-space: pre-wrap;      
+    word-wrap: break-word;      
+    background-color: #ffffff; 
+    padding: 20px;
+    border: 1px solid #e0e0e0; 
+    border-radius: 6px;
+    font-family: 'Open Sans', sans-serif; 
+    font-size: 1em; 
+    line-height: 1.8;
+    color: #212529; 
+}
+.ai-response-content strong { 
+    font-family: 'Open Sans', sans-serif; 
+    font-weight: 700; 
+    color: #4A00E0; 
+}
+
+/* Rodapé Principal */
+.main-footer {
+    background-color: rgba(22, 22, 38, 0.75); 
+    color: #bdc3c7; 
+    text-align: center;
+    padding: 25px 20px;
+    margin-top: auto; 
+    font-family: 'Open Sans', sans-serif;
+    font-size: 0.9em;
+}
+.main-footer p {
+    margin: 0;
+    color: #bdc3c7; 
+}
+
+/* --- Estilos ESPECÍFICOS para a INTRO na página de menu (menu.html) --- */
+.hero-section-intro { 
+    color: white; 
+    padding: 10vh 20px 6vh 20px; 
+    text-align: center;
+    width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 75vh; 
+    transition: min-height 0.8s cubic-bezier(0.68, -0.55, 0.27, 1.55), 
+                padding 0.8s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+.hero-section-intro.compact { 
+    min-height: auto; 
+    padding: 5vh 20px 2vh 20px; 
+}
+
+.hero-section-intro h1 { 
+    font-family: 'Montserrat', sans-serif; 
+    font-size: 4.8em; 
+    margin-bottom: 20px;
+    font-weight: 900; 
+    color: #fff;
+    text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.6);
+    line-height: 1.1; 
+    transition: font-size 0.8s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+.hero-section-intro.compact h1 { 
+    font-family: 'Montserrat', sans-serif; 
+    font-size: 2.5em; 
+    font-weight: 700; 
+    margin-bottom: 15px;
+}
+
+.hero-section-intro .subtitle {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1.6em;
+    font-weight: 400;
+    margin-bottom: 50px;
+    max-width: 750px;
+    margin-left: auto;
+    margin-right: auto;
+    color: #c792ea; 
+    opacity: 0.95; 
+    line-height: 1.5;
+    transition: font-size 0.8s cubic-bezier(0.68, -0.55, 0.27, 1.55), 
+                margin-bottom 0.8s cubic-bezier(0.68, -0.55, 0.27, 1.55),
+                opacity 0.5s ease-out;
+}
+.hero-section-intro.compact .subtitle {
+    font-size: 1.1em;
+    margin-bottom: 25px;
+    opacity: 0.9; 
+}
+
+.vamos-la-container {
+    text-align: center;
+    transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1), 
+                transform 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+                max-height 0.6s ease-out 0.1s, 
+                padding 0.6s ease-out 0.1s,
+                margin 0.6s ease-out 0.1s;
+}
+.vamos-la-container.hidden { 
+    opacity: 0;
+    transform: scale(0.9) translateY(20px); 
+    pointer-events: none; 
+    max-height: 0 !important; 
+    padding: 0 !important;
+    margin: 0 !important;
+    overflow: hidden;
+}
+.vamos-la-container .button-link { 
+    padding: 18px 50px; 
+    font-size: 1.4em; 
+    background: linear-gradient(135deg, #8E2DE2, #6c63ff); 
+    box-shadow: 0 6px 20px rgba(110, 99, 255, 0.4); 
+    font-weight: 700; 
+    font-family: 'Roboto', sans-serif; 
+}
+.vamos-la-container .button-link:hover {
+    background: linear-gradient(135deg, #7d26c9, #5649ff);
+}
+
+/* Container para os botões de caminhos no menu.html */
+.menu-options-container {
+    width: 100%;
+    max-width: 1000px; 
+    margin: 0 auto 40px auto; 
+    padding: 0 20px; 
+    box-sizing: border-box;
+}
+.caminhos { 
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px; 
+    max-height: 0; 
+    overflow: hidden; 
+    opacity: 0;
+    transform: translateY(30px); 
+    transition: max-height 0.8s cubic-bezier(0.68, -0.55, 0.27, 1.55) 0.2s, 
+                opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1) 0.4s,
+                transform 0.6s cubic-bezier(0.4, 0, 0.2, 1) 0.4s; 
+}
+.caminhos.visivel { 
+    max-height: 1000px; 
+    opacity: 1;
+    transform: translateY(0); 
+    margin-top: 40px; 
+}
+
+.caminho-botao { 
+    background-color: rgba(230, 230, 250, 0.95); 
+    color: #2c3e50; 
+    padding: 35px; 
+    text-decoration: none;
+    border-radius: 15px; 
+    font-family: 'Open Sans', sans-serif; 
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2); 
+    min-width: 300px; 
+    flex-basis: 320px; 
+    flex-grow: 1; 
+    max-width: 350px; 
+    text-align: center; 
+    border: 1px solid rgba(142, 45, 226, 0.3); 
+    position: relative; /* Para que o z-index funcione no hover */
+}
+.caminho-botao:hover {
+    background-color: rgba(220, 220, 245, 0.98); 
+    transform: translateY(-6px) scale(1.04); 
+    box-shadow: 0 15px 35px rgba(0,0,0,0.25);
+    border-color: #8E2DE2;
+    z-index: 10; /* MUDANÇA: Adicionado z-index no hover */
+}
+.caminho-botao h3 { 
+    font-family: 'Roboto', sans-serif; 
+    font-weight: 700;
+    font-size: 1.6em; 
+    margin-top: 0;
+    margin-bottom: 18px; 
+    color: #4A00E0; 
+}
+.caminho-botao p { 
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1em; 
+    color: #212529 !important; 
+    line-height: 1.6; 
+    margin-bottom: 0;
+    text-align: center; 
+}
+
+/* Estilos para a lista de revisões (revisoes_lista.html) */
+.lista-revisoes {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+    gap: 25px; 
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.lista-revisoes li a { 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    justify-content: center; 
+    min-height: 110px; 
+    background-color: rgba(230, 230, 250, 0.95); 
+    color: #4A00E0; 
+    padding: 22px; 
+    text-decoration: none;
+    border-radius: 10px; 
+    text-align: center;
+    font-size: 1.15em; 
+    font-family: 'Roboto', sans-serif; 
+    font-weight: 500;
+    border: 1px solid #8E2DE2; 
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1); 
+    transition: all 0.3s ease;
+    position: relative; /* Para que o z-index funcione no hover */
+}
+.lista-revisoes li a:hover {
+    background-color: #6c63ff; 
+    color: white;
+    border-color: #4A00E0;
+    transform: translateY(-3px) scale(1.02); 
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+    z-index: 10; /* MUDANÇA: Adicionado z-index no hover */
+}
+
+/* Estilos para detalhes da revisão (revisao_detalhe.html) */
+.conteudo-revisao { 
+     font-family: 'Open Sans', sans-serif; 
+     font-size: 1.05em; 
+     line-height: 1.8; 
+     color: #212529; 
+     text-align: left; 
+}
+.conteudo-revisao div { 
+    margin-bottom: 30px; 
+}
+.conteudo-revisao strong { 
+    font-weight: 700; 
+    color: #4A00E0; 
+    font-family: 'Roboto', sans-serif; 
+    font-size: 1.3em; 
+    display: block; 
+    margin-bottom: 12px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid rgba(142, 45, 226, 0.2); 
+}
+.conteudo-revisao p { 
+    font-family: 'Open Sans', sans-serif;
+    margin-top: 0; 
+    margin-bottom: 15px;
+    text-align: left; 
+    color: #212529; 
+}
+
+/* Links de Voltar */
+.voltar-link-container { 
+    text-align: center;
+    width: 100%;
+    margin-top: 40px;
+    padding-top: 25px;
+    border-top: 1px solid rgba(142, 45, 226, 0.2); 
+}
+.voltar-link {
+    display: inline-block; 
+    margin: 10px 15px; 
+    padding: 12px 25px;
+    background-color: #6c757d; 
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
+    font-size: 1em;
+    font-family: 'Roboto', sans-serif; 
+    font-weight: 600; 
+    transition: background-color 0.3s;
+}
+.voltar-link:hover {
+    background-color: #545b62;
+}
+
+/* Estilos para 404 e 500 (dentro do .main-container branco perolizado) */
+.error-page-container {
+    padding: 40px; 
+    border-radius: 12px; 
+    text-align: center;
+}
+.error-page-container h1 { 
+    font-size: 4.5em; 
+    margin-bottom: 15px; 
+    color: #4A00E0; 
+    font-family: 'Roboto', sans-serif; 
+    font-weight: 700; 
+}
+.error-page-container p { 
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1.3em; 
+    margin-bottom: 25px; 
+    color: #212529 !important; 
+}
+.error-page-container .error-code { 
+    color: #e74c3c; 
+}
+.error-page-container .error-message { 
+    color: #6c63ff; 
+}
+.error-page-container .button-link { 
+    margin-top: 20px; 
+}

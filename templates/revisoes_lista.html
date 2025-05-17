@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}Revisões Padrões - Meu amigo Mecânico{% endblock %}
+
+{% block content %}
+<div class="main-container">
+    <h2>Informações sobre Revisões Comuns</h2>
+    <p style="text-align: center; margin-bottom: 30px; font-size: 1.1em; color: #ccc;">Selecione um item da lista abaixo para saber mais detalhes, como intervalos recomendados, o que verificar e estimativas de custo.</p>
+    
+    <ul class="lista-revisoes">
+        <li><a href="{{ url_for('detalhe_revisao', item_revisao_slug='troca-oleo-motor') }}">Troca de Óleo do Motor</a></li>
+        <li><a href="{{ url_for('detalhe_revisao', item_revisao_slug='filtro-oleo') }}">Filtro de Óleo</a></li>
+        <li><a href="{{ url_for('detalhe_revisao', item_revisao_slug='filtro-ar-motor') }}">Filtro de Ar do Motor</a></li>
+        <li><a href="{{ url_for('detalhe_revisao', item_revisao_slug='filtro-combustivel') }}">Filtro de Combustível</a></li>
+        <li><a href="{{ url_for('detalhe_revisao', item_revisao_slug='velas-ignicao') }}">Velas de Ignição</a></li>
+        <li><a href="{{ url_for('detalhe_revisao', item_revisao_slug='correia-dentada') }}">Correia Dentada</a></li>
+        <li><a href="{{ url_for('detalhe_revisao', item_revisao_slug='sistema-arrefecimento') }}">Sistema de Arrefecimento</a></li>
+        <li><a href="{{ url_for('detalhe_revisao', item_revisao_slug='pneus') }}">Pneus (Calibragem, Rodízio, Desgaste)</a></li>
+        <li><a href="{{ url_for('detalhe_revisao', item_revisao_slug='freios') }}">Freios (Pastilhas, Discos, Fluido)</a></li>
+        <li><a href="{{ url_for('detalhe_revisao', item_revisao_slug='alinhamento-balanceamento') }}">Alinhamento e Balanceamento</a></li>
+    </ul>
+
+    <div class="voltar-link-container">
+        <a href="{{ url_for('pagina_menu_principal') }}" class="voltar-link">Voltar ao Menu Principal</a>
+    </div>
+</div>
+{% endblock %}

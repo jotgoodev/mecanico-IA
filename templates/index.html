@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}Diagnóstico por Sintomas - Meu amigo Mecânico{% endblock %}
+
+{% block content %}
+<div class="main-container">
+    <h2>Diagnóstico por Sintomas</h2>
+    <p style="text-align: center; margin-bottom:20px; font-size: 1.1em; color: #ccc;">Descreva os sintomas que o seu carro está apresentando. Tente ser o mais detalhado possível!</p>
+    
+    <form method="POST">
+        <label for="user_input" style="display:block; margin-bottom:8px; font-weight:bold; font-size: 1.05em; color: #e0e0e0;">Sintomas do Veículo:</label>
+        <textarea name="user_input" id="user_input" rows="8" placeholder="Ex: Carro faz barulho agudo ao frear, motor perdendo força na subida, luz da injeção acesa...">{{ sintoma_previo }}</textarea>
+        <input type="submit" value="Analisar Sintomas">
+    </form>
+
+    {% if resultado_gemini %}
+    <div class="response-container">
+        <h3>Possível Diagnóstico e Orientações:</h3>
+        <div class="ai-response-content">{{ resultado_gemini | safe }}</div>
+    </div>
+    {% endif %}
+
+    <div class="voltar-link-container">
+        <a href="{{ url_for('pagina_menu_principal') }}" class="voltar-link">Voltar ao Menu Principal</a>
+    </div>
+</div>
+{% endblock %}

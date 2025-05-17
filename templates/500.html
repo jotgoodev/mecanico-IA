@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block title %}Erro no Servidor - Meu amigo Mecânico{% endblock %}
+
+{% block content %}
+<div class="main-container error-page-container">
+    <h1 class="error-code">Oops! 500</h1>
+    <p class="error-message">Ocorreu um erro inesperado no nosso sistema.</p>
+    <p>Parece que uma ferramenta caiu na engrenagem!</p>
+    <p>Por favor, tente novamente mais tarde.</p>
+    <p><a href="{{ url_for('pagina_menu_principal') }}" class="button-link">Voltar para o Menu Principal</a></p>
+</div>
+{% endblock %}

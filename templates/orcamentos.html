@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}Entendendo seu Orçamento - Meu amigo Mecânico{% endblock %}
+
+{% block content %}
+<div class="main-container">
+    <h2>Entendendo o Orçamento ou Diagnóstico do Mecânico</h2>
+    <p style="text-align: center; margin-bottom:20px; font-size: 1.1em; color: #ccc;">Cole abaixo o orçamento, a lista de peças ou o diagnóstico que o seu mecânico passou. Vamos tentar decifrar juntos!</p>
+    
+    <form method="POST">
+        <label for="orcamento_input" style="display:block; margin-bottom:8px; font-weight:bold; font-size: 1.05em; color: #e0e0e0;">Orçamento/Diagnóstico do Mecânico:</label>
+        <textarea name="orcamento_input" id="orcamento_input" rows="8" placeholder="Ex: Trocar correia dentada, tensor e bomba d'água. Verificar barulho na suspensão dianteira...">{{ orcamento_previo }}</textarea>
+        <input type="submit" value="Analisar Orçamento">
+    </form>
+
+    {% if resultado_analise_orcamento %}
+    <div class="response-container">
+        <h3>Análise do seu Orçamento/Diagnóstico:</h3>
+        <div class="ai-response-content">{{ resultado_analise_orcamento | safe }}</div>
+    </div>
+    {% endif %}
+
+    <div class="voltar-link-container">
+        <a href="{{ url_for('pagina_menu_principal') }}" class="voltar-link">Voltar ao Menu Principal</a>
+    </div>
+</div>
+{% endblock %}
